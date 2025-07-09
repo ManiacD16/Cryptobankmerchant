@@ -13,7 +13,8 @@ const LoginPage = () => {
   });
   const [otp, setOTP] = useState('');
   const [userId, setUserId] = useState('');
-  const [step, setStep] = useState(1); // 1 = login, 2 = otp
+  const [step, setStep] = useState(1); // 1 = login, 2 = otp's
+  
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
