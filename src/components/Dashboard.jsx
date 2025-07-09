@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import { 
   TrendingUp, 
   Clock, 
@@ -19,7 +20,7 @@ const Dashboard = () => {
   const [balance, setBalance] = useState(200.00);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [selectedTimeframe, setSelectedTimeframe] = useState('24h');
-
+const navigate = useNavigate();  // Initialize navigate function
   // Simulate real-time balance updates
   useEffect(() => {
     const interval = setInterval(() => {
@@ -122,9 +123,7 @@ const Dashboard = () => {
               </div>
               <div className="flex items-end space-x-2">
                 <span className="text-2xl font-bold text-gray-800">{stat.value}</span>
-                <span className={`text-sm font-medium ${
-                  stat.trend === 'up' ? 'text-green-600' : 'text-red-600'
-                }`}>
+                <span className={`text-sm font-medium ${stat.trend === 'up' ? 'text-green-600' : 'text-red-600'}`}>
                   {stat.change}
                 </span>
               </div>
@@ -161,9 +160,7 @@ const Dashboard = () => {
                 <div key={tx.id} className="p-4 hover:bg-gray-50 transition-colors duration-200 group">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
-                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                        tx.type === 'Incoming' ? 'bg-green-100' : 'bg-red-100'
-                      }`}>
+                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${tx.type === 'Incoming' ? 'bg-green-100' : 'bg-red-100'}`}>
                         {tx.type === 'Incoming' ? (
                           <ArrowDownRight className="w-5 h-5 text-green-600" />
                         ) : (
@@ -186,9 +183,7 @@ const Dashboard = () => {
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className={`text-lg font-semibold ${
-                        tx.type === 'Incoming' ? 'text-green-600' : 'text-red-600'
-                      }`}>
+                      <div className={`text-lg font-semibold ${tx.type === 'Incoming' ? 'text-green-600' : 'text-red-600'}`}>
                         {tx.type === 'Incoming' ? '+' : '-'}{tx.amount} USDT
                       </div>
                       <div className="text-sm text-gray-500">{tx.time}</div>
@@ -289,22 +284,27 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-
-          {/* Quick Actions */}
-          <div className="bg-white/80 backdrop-blur-lg border border-gray-200 rounded-xl p-6 shadow-lg">
+<div className="bg-white/80 backdrop-blur-lg border border-gray-200 rounded-xl p-6 shadow-lg">
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Quick Actions</h3>
             <div className="space-y-3">
               {/* <button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white py-3 px-4 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-purple-500/25">
                 Generate Payment Link
               </button> */}
-              <button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 px-4 rounded-lg font-medium transition-all duration-300 border border-gray-300">
-                Download Report
+              <button  onClick={() => navigate('/transactions')} className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 px-4 rounded-lg font-medium transition-all duration-300 border border-gray-300">
+                View Transactions
               </button>
-              <button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 px-4 rounded-lg font-medium transition-all duration-300 border border-gray-300">
+              <button onClick={() => navigate('/api-credentials')} className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 px-4 rounded-lg font-medium transition-all duration-300 border border-gray-300">
                 API Documentation
               </button>
+                <button onClick={() => navigate('/withdraw-requests')} className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 px-4 rounded-lg font-medium transition-all duration-300 border border-gray-300">
+                  Withdrawal Requests
+                </button>
+                {/* <button onClick={() => navigate('/wallet-balances')} className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 px-4 rounded-lg font-medium transition-all duration-300 border border-gray-300">
+                  View Wallet Balances
+                </button> */}
             </div>
           </div>
+          {/* Quick Actions */}
         </div>
       </div>
     </div>
