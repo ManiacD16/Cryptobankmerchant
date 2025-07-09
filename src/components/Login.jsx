@@ -19,7 +19,7 @@ const LoginPage = () => {
   const [success, setSuccess] = useState('');
   const [role, setRole] = useState('');
 
-  const API_BASE_URL = 'http://142.93.223.225//api/v1/auth';
+  const API_BASE_URL = 'https://79c08d872c31.ngrok-free.app/api/v1/auth';
 
   // Input handlers
   const handleInputChange = (e) => {

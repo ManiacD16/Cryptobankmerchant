@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, Zap, Shield, User, LogOut, KeyRound, TrendingUp } from 'lucide-react';
 
-const API_BASE_URL = 'http://142.93.223.225/api/v1/auth';
+const API_BASE_URL = 'https://79c08d872c31.ngrok-free.app/api/v1/auth';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
